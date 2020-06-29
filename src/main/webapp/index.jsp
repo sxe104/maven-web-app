@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Hello World</title>
+		<title>Hello World Maven Application</title>
 	</head>
 	<body>
 		<!--  <a href="saytime">Click Here</a><br/>-->
