@@ -8,6 +8,7 @@ import java.util.Calendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,6 +31,7 @@ public class SimpleServlet extends HttpServlet {
 		  if (userInputFilePath!=null ) {
 			File file=new File(userInputFilePath);
 		  }
+		  cookieHeaderScenario(req, resp);
 		  headerScenario(req, resp);
 		  testCaseForDirectory();
 	   }
@@ -40,6 +42,19 @@ public class SimpleServlet extends HttpServlet {
 			System.out.println("user input value in header scenario -->>"+userInput);
 			response.setHeader("Location", userInput);// in this line , it will throw Header manipulation issue 
 		}
+	   public void cookieHeaderScenario(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+			
+			System.out.println("<< Cookie Header method() updated >>>>");
+			String userInput=request.getParameter("myUserInput");
+			System.out.println("user input value in cookie header <before validate >:::"+userInput);
+					
+			//Creating a cookie
+		    Cookie c1=new Cookie("userName",userInput); //in this line , it will throw Header manipulation issue 
+		     
+		    //Adding the cookies to response header
+	        response.addCookie(c1);
+	       
+	    }
 	   public static void testCaseForDirectory() {
 			try {
 				System.out.println("enter into testCaseForDirectory...updated.");
