@@ -22,18 +22,24 @@ public class SimpleServlet extends HttpServlet {
 	   @Override
 	   protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
 	         throws ServletException, IOException {
-		  System.out.println("<< -- enter into main method -- >>");
+		  System.out.println("<< -- enter into main method  -- >>");
 		  String userInputFilePath = req.getParameter("myFilePath");
-		  System.out.println("User Input (Before sanitize) "+userInputFilePath);
+		  System.out.println("User Input -->  "+userInputFilePath);
 		  
-		  System.out.println("User Input (After sanitize) "+userInputFilePath);
+		 
 		  if (userInputFilePath!=null ) {
 			File file=new File(userInputFilePath);
 		  }
+		  headerScenario(req, resp);
 		  testCaseForDirectory();
 	   }
 	   
-	   
+	   public void headerScenario(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+			System.out.println("<<< Header-scenario-method() >>>");
+			String userInput=request.getParameter("myFilePath");
+			System.out.println("user input value in header scenario -->>"+userInput);
+			response.setHeader("Location", userInput);// in this line , it will throw Header manipulation issue 
+		}
 	   public static void testCaseForDirectory() {
 			try {
 				System.out.println("enter into testCaseForDirectory...updated.");
@@ -45,8 +51,8 @@ public class SimpleServlet extends HttpServlet {
 				String fileSeparator = System.getProperty("file.separator");
 				String fileName = "out_"+printTime+".log";
 				logFile = filePath+fileSeparator+"logs"+fileSeparator+fileName;
-				System.out.println("total directory file path(Before sanitize) "+logFile);
-				System.out.println("total directory file path(After sanitize) "+logFile);
+				System.out.println("total directory file path --> "+logFile);
+				
 				//Due to line# 44 & 45, the fortify throwing vulnerability at below line
 				File fLog = new File (logFile);
 			}catch(Exception e) {
