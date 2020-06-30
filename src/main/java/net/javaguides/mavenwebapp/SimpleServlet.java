@@ -23,7 +23,7 @@ public class SimpleServlet extends HttpServlet {
 	   @Override
 	   protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
 	         throws ServletException, IOException {
-		  System.out.println("<< -- enter into main method  -- >>");
+		  System.out.println("<< -- enter into main method updated  -- >>");
 		  String userInputFilePath = req.getParameter("myFilePath");
 		  System.out.println("User Input -->  "+userInputFilePath);
 		  
