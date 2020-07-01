@@ -1,10 +1,12 @@
 name: FoD scan
 
-#on: [push]
+
+on: [push]
+
 #the job will be trigger for every hour.
-on: 
-  schedule:
-    - cron:  '0 * * * *'
+#on: 
+  #schedule:
+   # - cron:  '0 * * * *'
 
 jobs:
   build:
