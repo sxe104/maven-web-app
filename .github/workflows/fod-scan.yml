@@ -10,7 +10,7 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: my-git-runner
 
     steps:
       - uses: actions/checkout@v2
